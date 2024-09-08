@@ -1,3 +1,4 @@
+// Copyright 2024 Wilson Liang
 #include "RouteController.h"
 
 #include <exception>
@@ -7,7 +8,6 @@
 
 #include "Globals.h"
 #include "MyFileDatabase.h"
-#include "crow.h"
 
 // Utility function to handle exceptions
 crow::response handleException(const std::exception& e) {

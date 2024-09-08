@@ -1,3 +1,4 @@
+// Copyright 2024 Wilson Liang
 #include <csignal>
 #include <iostream>
 #include <map>
@@ -9,7 +10,6 @@
 #include "MyApp.h"
 #include "MyFileDatabase.h"
 #include "RouteController.h"
-#include "crow.h"
 
 /**
  *  Method to handle proper termination protocols

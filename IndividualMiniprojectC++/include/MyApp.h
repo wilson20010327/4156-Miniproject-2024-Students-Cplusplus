@@ -1,3 +1,4 @@
+// Copyright 2024 Wilson Liang
 #ifndef MYAPP_H
 #define MYAPP_H
 
