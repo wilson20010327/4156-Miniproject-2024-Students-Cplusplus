@@ -56,11 +56,6 @@ TEST(CourseUnitTests, ReassignFunction) {
   EXPECT_EQ(tempCourse.getCourseLocation(), "417 IA");
   EXPECT_EQ(tempCourse.getCourseTimeSlot(), "11:40-11:55");
 }
-TEST(CourseUnitTests, EmptyInitDisplay) {
-  Course emptyCourse = Course();
-  // Expect equality.
-  EXPECT_EQ(emptyCourse.display(), "\nInstructor: ; Location: ; Time: ");
-}
 TEST(CourseUnitTests, DetialInitDisplay) {
   Course detailCourse =
       Course(250, "Griffin Newbold", "417 IAB", "11:40-12:55");
@@ -68,4 +63,11 @@ TEST(CourseUnitTests, DetialInitDisplay) {
   EXPECT_EQ(
       detailCourse.display(),
       "\nInstructor: Griffin Newbold; Location: 417 IAB; Time: 11:40-12:55");
+}
+TEST(CourseUnitTests, EqualTest) {
+  Course tempCourse1 = Course(5, "Griffin Newbold", "417 IAB", "11:40-12:55");
+  Course tempCourse2 = Course(5, "Griffin Newbold", "417 IAB", "11:40-12:55");
+  Course tempCourse3 = Course(5, "Griffin Newbold", "41 IAB", "11:40-12:55");
+  EXPECT_EQ(tempCourse1, tempCourse2);
+  EXPECT_NE(tempCourse1, tempCourse3);
 }

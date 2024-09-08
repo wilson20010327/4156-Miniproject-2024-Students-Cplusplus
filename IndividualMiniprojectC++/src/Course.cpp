@@ -132,3 +132,18 @@ void Course::deserialize(std::istream& in) {
   courseTimeSlot.resize(timeSlotLen);
   in.read(&courseTimeSlot[0], timeSlotLen);
 }
+
+// adding second const is for pass google test, meaning the function will not
+// change any value
+bool Course::operator==(const Course& other) const {
+  if (enrolledStudentCount != other.enrolledStudentCount) return false;
+  if (enrollmentCapacity != other.enrollmentCapacity) return false;
+  if (courseLocation != other.courseLocation) return false;
+  if (instructorName != other.instructorName) return false;
+  if (courseTimeSlot != other.courseTimeSlot) return false;
+  return true;
+}
+
+bool Course::operator!=(const Course& other) const {
+  return !(*this == (other));
+}
