@@ -1,8 +1,9 @@
 // Copyright 2024 Wilson Liang
 #include <gtest/gtest.h>
 
-#include "Course.h"
+#include <fstream>
 
+#include "Course.h"
 TEST(CourseUnitTests, EmptyInit) {
   Course emptyCourse = Course();
   // Expect equality.
@@ -70,4 +71,15 @@ TEST(CourseUnitTests, EqualTest) {
   Course tempCourse3 = Course(5, "Griffin Newbold", "41 IAB", "11:40-12:55");
   EXPECT_EQ(tempCourse1, tempCourse2);
   EXPECT_NE(tempCourse1, tempCourse3);
+}
+
+TEST(CourseUnitTests, DeserializeAndSerialize) {
+  Course tempCourse1 = Course(5, "Griffin Newbold", "417 IAB", "11:40-12:55");
+  std::ofstream outFile("Log.txt");
+  tempCourse1.serialize(outFile);
+  outFile.close();
+  std::ifstream inFile("Log.txt");
+  Course tempCourse2 = Course();
+  tempCourse2.deserialize(inFile);
+  EXPECT_EQ(tempCourse1, tempCourse2);
 }

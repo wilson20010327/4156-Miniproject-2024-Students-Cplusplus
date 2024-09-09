@@ -1,6 +1,8 @@
 // Copyright 2024 Wilson Liang
 #include <gtest/gtest.h>
 
+#include <fstream>
+
 #include "Department.h"
 
 TEST(DepartmentUnitTests, EmptyInit) {
@@ -85,4 +87,32 @@ TEST(DepartmentUnitTests, DisplayFunciton) {
       "COMS 3311: \nInstructor: Jack; Location: Mudd 451; Time: 11:40-12:55\n"
       "COMS 3313: \nInstructor: Jack; Location: Mudd 451; Time: 11:40-12:55\n";
   EXPECT_EQ(tempDepartment.display(), expectedResult);
+}
+TEST(DepartmentUnitTests, DeserializeAndSerialize) {
+  std::string deptCode = "COMS";
+  std::string departmentChair = "Jacky";
+  int numberOfMajors = 5;
+  std::map<std::string, std::shared_ptr<Course>> courses;
+  std::string courseId = "3311";
+  std::string instructorName = "Jack";
+  std::string courseLocation = "Mudd 451";
+  std::string courseTimeSlot = "11:40-12:55";
+  int capacity = 500;
+  std::shared_ptr<Course> coms3311 = std::make_shared<Course>(
+      capacity, instructorName, courseLocation, courseTimeSlot);
+  courses[courseId] = coms3311;
+
+  courseId = "3313";
+  std::shared_ptr<Course> coms3313 = std::make_shared<Course>(
+      capacity, instructorName, courseLocation, courseTimeSlot);
+  courses[courseId] = coms3313;
+  Department tempDepartment =
+      Department(deptCode, courses, departmentChair, numberOfMajors);
+  std::ofstream outFile("Log.txt");
+  tempDepartment.serialize(outFile);
+  outFile.close();
+  std::ifstream inFile("Log.txt");
+  Department tempDepartment2 = Department();
+  tempDepartment2.deserialize(inFile);
+  EXPECT_EQ(tempDepartment.display(), tempDepartment2.display());
 }
