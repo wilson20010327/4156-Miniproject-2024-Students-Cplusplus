@@ -6,6 +6,17 @@ set(INCLUDE_PATHS ~/boost_1_86_0 ~/Crow-1.2.0/include)
 set(CMAKE_CXX_STANDARD 14)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
+# add coverage flag
+set(CMAKE_BINARY_DIR ~/4156-Miniproject-2024-Students-Cplusplus/IndividualMiniprojectC++/build/CMakeFiles/IndividualMiniprojectTests.dir/src)
+set(CMAKE_CXX_FLAGS "-O0 -coverage")
+find_program(LCOV lcov REQUIRED)
+find_program(GENHTML genhtml REQUIRED)
+add_custom_target(coverage
+# gather data
+COMMAND ${LCOV} --directory . --capture --output-file coverage.info
+# generate report
+COMMAND ${GENHTML} --demangle-cpp -o coverage coverage.info
+WORKING_DIRECTORY ${CMAKE_BINARY_DIR})
 # Main project executable
 add_executable(IndividualMiniproject 
     src/main.cpp 
@@ -45,6 +56,7 @@ add_executable(IndividualMiniprojectTests
   test/sample.cpp
   test/CourseUnitTests.cpp
   test/DepartmentUnitTests.cpp
+  test/MyFileDataBaseUnitTests.cpp
   src/Course.cpp
   src/Department.cpp
   src/MyFileDatabase.cpp
@@ -80,6 +92,7 @@ if (CPPLINT)
         test/sample.cpp
         test/CourseUnitTests.cpp
         test/DepartmentUnitTests.cpp
+        test/MyFileDataBaseUnitTests.cpp
     )
 
     # Custom target to run cpplint

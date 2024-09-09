@@ -114,5 +114,7 @@ TEST(DepartmentUnitTests, DeserializeAndSerialize) {
   std::ifstream inFile("Log.txt");
   Department tempDepartment2 = Department();
   tempDepartment2.deserialize(inFile);
-  EXPECT_EQ(tempDepartment.display(), tempDepartment2.display());
+  EXPECT_EQ(tempDepartment, tempDepartment2);
+  tempDepartment.dropPersonFromMajor();
+  EXPECT_NE(tempDepartment, tempDepartment2);
 }

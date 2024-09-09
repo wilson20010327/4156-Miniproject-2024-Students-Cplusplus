@@ -1,0 +1,3 @@
+1. LCOV tutorial in CMakeList
+https://stackoverflow.com/questions/38438219/how-to-remove-certain-directories-from-lcov-code-coverage-report
+https://qiaomuf.wordpress.com/2011/05/26/use-gcov-and-lcov-to-know-your-test-coverage/
