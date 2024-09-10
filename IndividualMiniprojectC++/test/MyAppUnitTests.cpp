@@ -7,7 +7,7 @@ TEST(MyAppUnitTests, DatabaseSavingAndRead) {
   MyApp app = MyApp();
   app.run("setup");
   app.onTermination();
-  app.run("read");
+  app.run("run");
   MyApp app1 = MyApp();
   app1.run("setup");
   MyFileDatabase* db = app.getDatabase();
