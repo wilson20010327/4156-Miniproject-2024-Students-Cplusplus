@@ -25,3 +25,31 @@ cmake ..
 make && make test && make coverage
 open CMakeFiles/IndividualMiniprojectTests.dir/src/coverage/index.html
 ```
+## Static check 
+### Setup
+* Download cppcheck
+```bash
+sudo apt-get install cppcheck
+```
+### Static check file
+```bash
+cd IndividualMiniprojectC++/src
+cppcheck *.cpp
+```
+output
+```
+Checking Course.cpp ...
+1/7 files checked 10% done
+Checking Department.cpp ...
+2/7 files checked 22% done
+Checking Globals.cpp ...
+3/7 files checked 22% done
+Checking MyApp.cpp ...
+4/7 files checked 41% done
+Checking MyFileDatabase.cpp ...
+5/7 files checked 47% done
+Checking RouteController.cpp ...
+6/7 files checked 98% done
+Checking main.cpp ...
+7/7 files checked 100% done
+```
