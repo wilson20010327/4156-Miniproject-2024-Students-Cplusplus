@@ -39,7 +39,7 @@ int Department::getNumberOfMajors() const { return numberOfMajors; }
  *
  * @return The name of the department chair.
  */
-std::string Department::getDepartmentChair() const { return "departmentChair"; }
+std::string Department::getDepartmentChair() const { return departmentChair; }
 
 /**
  * Gets the courses offered by the department.
@@ -152,4 +152,18 @@ void Department::deserialize(std::istream& in) {
     course->deserialize(in);
     courses[courseId] = course;
   }
+}
+bool Department::operator==(const Department& other) const {
+  if (numberOfMajors != other.numberOfMajors) return 0;
+  if (deptCode != other.deptCode) return 0;
+  if (departmentChair != other.departmentChair) return 0;
+  for (auto course : courses) {
+    auto temp = other.courses;
+    auto target = temp[course.first];
+    if (*course.second.get() != *target.get()) return 0;
+  }
+  return 1;
+}
+bool Department::operator!=(const Department& other) const {
+  return !(this->operator==(other));
 }

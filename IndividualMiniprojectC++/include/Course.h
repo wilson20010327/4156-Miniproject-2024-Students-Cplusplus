@@ -31,6 +31,9 @@ class Course {
   void setEnrolledStudentCount(int count);
   void serialize(std::ostream &out) const;
   void deserialize(std::istream &in);
+  // for the course compare, compare with the element not pointer of the object
+  bool operator==(const Course &other) const;
+  bool operator!=(const Course &other) const;
 };
 
 #endif

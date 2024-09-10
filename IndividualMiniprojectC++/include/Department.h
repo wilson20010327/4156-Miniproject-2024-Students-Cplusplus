@@ -30,6 +30,8 @@ class Department {
   std::string display() const;
   std::string getDepartmentChair() const;
   std::map<std::string, std::shared_ptr<Course>> getCourseSelection() const;
+  bool operator==(const Department& other) const;
+  bool operator!=(const Department& other) const;
 
  private:
   int numberOfMajors;
