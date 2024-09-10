@@ -53,13 +53,14 @@ enable_testing()
 
 # Test executable
 add_executable(IndividualMiniprojectTests
-  test/sample.cpp
   test/CourseUnitTests.cpp
   test/DepartmentUnitTests.cpp
   test/MyFileDataBaseUnitTests.cpp
+  test/MyAppUnitTests.cpp
   src/Course.cpp
   src/Department.cpp
   src/MyFileDatabase.cpp
+  src/MyApp.cpp
 )
 
 target_include_directories(IndividualMiniprojectTests PRIVATE 
@@ -89,10 +90,10 @@ if (CPPLINT)
         src/RouteController.cpp
         src/MyApp.cpp
         src/Globals.cpp
-        test/sample.cpp
         test/CourseUnitTests.cpp
         test/DepartmentUnitTests.cpp
         test/MyFileDataBaseUnitTests.cpp
+        test/MyAppUnitTests.cpp
     )
 
     # Custom target to run cpplint
