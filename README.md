@@ -19,25 +19,33 @@ add_custom_target(coverage
     WORKING_DIRECTORY ${CMAKE_BINARY_DIR})
 ```
 ### command
-```
+```bash
 cd IndividualMiniprojectC++/build
 cmake ..
 make && make test && make coverage
 open CMakeFiles/IndividualMiniprojectTests.dir/src/coverage/index.html
 ```
+### Outcome
+[coverage report](./LCOV-coverage-report.pdf)
 ## Static check 
 ### Setup
-* Download cppcheck
+* Download cppcheck and clang-tidy
 ```bash
 sudo apt-get install cppcheck
+sudo apt-get -y install clang-tidy
 ```
 ### Static check file
 ```bash
+cd IndividualMiniprojectC++/build
+cmake -DCMAKE_EXPORT_COMPILE_COMMANDS=ON ..
+run-clang-tidy -header-filter='.*' -header-filter='/^(?!~\/asio-1.30.2\/include).*\.h$' -header-filter='/^(?!~\/boost_1_86_0).*\.h$' -header-filter='/^(?!~\/Crow-1.2.0\/include).*\.h$' -checks='unSuppressed,modernize*'
+```
+``` bash
 cd IndividualMiniprojectC++/src
 cppcheck *.cpp
 ```
-output
-```
+cppcheck output
+```bash
 Checking Course.cpp ...
 1/7 files checked 10% done
 Checking Department.cpp ...
@@ -53,3 +61,7 @@ Checking RouteController.cpp ...
 Checking main.cpp ...
 7/7 files checked 100% done
 ```
+
+
+
+
