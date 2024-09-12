@@ -1,5 +1,6 @@
 // Copyright 2024 Wilson Liang
 #include <map>
+#include <numeric>
 #include <string>
 
 #include "Department.h"

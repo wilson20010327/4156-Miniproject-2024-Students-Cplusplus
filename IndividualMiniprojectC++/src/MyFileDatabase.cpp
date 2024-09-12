@@ -81,10 +81,14 @@ void MyFileDatabase::deSerializeObjectFromFile() {
  * @return a string representation of the database
  */
 std::string MyFileDatabase::display() const {
-  std::string result;
-  for (const auto& it : departmentMapping) {
-    result +=
-        "For the " + it.first + " department:\n" + it.second.display() + "\n";
-  }
+  std::string result = "";
+  result = std::accumulate(
+      std::begin(departmentMapping), std::end(departmentMapping), result,
+      [](std::string cur,
+         const std::map<std::string, Department>::value_type& item) {
+        cur += "For the " + item.first + " department:\n" +
+               item.second.display() + "\n";
+        return cur;
+      });
   return result;
 }

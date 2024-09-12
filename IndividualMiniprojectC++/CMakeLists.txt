@@ -109,3 +109,26 @@ if (CPPLINT)
 else()
     message(WARNING "cpplint not found! Skipping style checks.")
 endif()
+
+find_program(CPPCHECK cppcheck)
+
+if (CPPCHECK)
+    # List of source files to be checked by cpplint
+    set(SOURCE_FILES_CPPCHECK
+        src/main.cpp 
+        src/Course.cpp 
+        src/Department.cpp 
+        src/MyFileDatabase.cpp 
+        src/RouteController.cpp
+        src/MyApp.cpp
+        src/Globals.cpp
+    )
+    # Custom target to run cpplint
+    add_custom_target(
+        cppcheck
+        COMMAND ${CPPCHECK} --enable=style,unusedFunction,performance,information  ${SOURCE_FILES_CPPCHECK}
+        WORKING_DIRECTORY ${CMAKE_SOURCE_DIR}
+    )
+else()
+    message(WARNING "cppcheck not found! static checks.")
+endif()

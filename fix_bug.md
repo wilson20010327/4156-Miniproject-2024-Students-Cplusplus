@@ -63,3 +63,6 @@ bool Course::isCourseFull() const {
 - std::string Department::getDepartmentChair() const { return "departmentChair"; }
 + std::string Department::getDepartmentChair() const { return departmentChair; }
 ```
+
+## MyFileDatabase.cpp
+* Change raw loop to accumulate function according to cppcheck suggestion
